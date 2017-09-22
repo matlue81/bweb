@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+</head>
+
+<body ng-app="myApp">
+<p><a href="#/!">Index</a></p>
+
+<a href="#!jobs">Jobs</a>
+<a href="#!clients">Clients</a>
+<a href="#!volumes">Volumes</a>
+
+
+<div ng-view></div>
+
+<script>
+var app = angular.module("myApp", ["ngRoute"]);
+app.config(function($routeProvider) {
+    $routeProvider
+    .when("/", {
+        templateUrl : "index.html"
+    })
+    .when("/jobs", {
+        templateUrl : "jobs.html"
+    })
+    .when("/clients", {
+        templateUrl : "clients.html"
+    })
+    .when("/volumes", {
+        templateUrl : "volumes.html"
+    });
+});
+
+</script>
+
+</body>
+</html>
+

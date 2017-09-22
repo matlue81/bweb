@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+</head>
+
+<body>
+
+<div>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th class="jobid">jobid</th>
+    <th class="name">name</th>
+    <th class="client">client</th>
+    <th class="type">type</th>
+    <th class="level">level</th>
+    <th class="jobfiles">jobfiles</th>
+    <th class="jobbytes">jobbytes</th>
+    <th class="joberrors">joberrors</th>
+    <th class="starttime">starttime</th>
+    <th class="endtime">endtime</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="x in jobs">
+    <td>{{ x.jobid }}</td>
+    <td>{{ x.name}}</td>
+    <td>{{ x.client }}</td>
+    <td>{{ x.type }}</td>
+    <td>{{ x.level }}</td>
+    <td>{{ x.jobfiles }}</td>
+    <td>{{ x.jobbytes }}</td>
+    <td>{{ x.joberrors }}</td>
+    <td>{{ x.starttime }}</td>
+    <td>{{ x.endtime }}</td>
+  </tr>
+  </tbody>
+</table>
+
+</div>
+
+<script>
+app.controller('jobsCtrl', function($scope, $http) {
+    $http.get("/api/jobs")
+    .then(function (response) {$scope.jobs = response.data;});
+});
+</script>
+
+</body>
+</html>

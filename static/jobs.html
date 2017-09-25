@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-</head>
-
-<body>
-
-<div>
 <table class="table table-striped">
   <thead>
   <tr>
@@ -37,15 +28,3 @@
   </tr>
   </tbody>
 </table>
-
-</div>
-
-<script>
-app.controller('jobsCtrl', function($scope, $http) {
-    $http.get("/api/jobs")
-    .then(function (response) {$scope.jobs = response.data;});
-});
-</script>
-
-</body>
-</html>

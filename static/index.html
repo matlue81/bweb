@@ -6,14 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-route.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 
 <body ng-app="myApp">
-<p><a href="#/!">Index</a></p>
-
-<a href="#!jobs">Jobs</a>
-<a href="#!clients">Clients</a>
-<a href="#!volumes">Volumes</a>
+<p><a href="#/!">Index</a>&emsp;<a href="#!jobs">Jobs</a></p>
 
 
 <div ng-view></div>
@@ -23,19 +21,18 @@ var app = angular.module("myApp", ["ngRoute"]);
 app.config(function($routeProvider) {
     $routeProvider
     .when("/", {
-        templateUrl : "index.html"
+        templateUrl : "main.html"
     })
     .when("/jobs", {
-        templateUrl : "jobs.html"
-    })
-    .when("/clients", {
-        templateUrl : "clients.html"
-    })
-    .when("/volumes", {
-        templateUrl : "volumes.html"
+        templateUrl : "jobs.html",
+        controller : "jobsCtrl"
     });
 });
 
+app.controller('jobsCtrl', function($scope, $http) {
+    $http.get("/api/jobs")
+    .then(function (response) {$scope.jobs = response.data;});
+});
 </script>
 
 </body>
